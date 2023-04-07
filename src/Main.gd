@@ -1,5 +1,11 @@
 extends Control
 
+# drew's additions
+var game_debug = true
+
+# end drew's additions
+
+
 onready var engine = $Engine
 onready var fd = $c/FileDialog
 onready var promote = $c/Promote
@@ -17,12 +23,38 @@ var move_index = 0
 var promote_to = ""
 var state = IDLE
 
+# drew's additions
+var whitescore = '0'
+var blackscore = '0'
+var attackwins = '0'
+var defendwins = "0"
+var whitewins = "0"
+var blackwins = "0"
+var incrsc
+var warresult
+var battlechance
+var l1_battlechancediv = 0.9
+var zattackwon = true
+var attack1
+var attack1type
+var defend1
+var defend1type
+var luck
+#var rng = RandomNumberGenerator.new()
+var battlecount = 0
+var war_level = "Level1"
+
+# end drew's additions
+
+
 # states
 enum { IDLE, CONNECTING, STARTING, PLAYER_TURN, ENGINE_TURN, PLAYER_WIN, ENGINE_WIN }
 # events
 enum { CONNECT, NEW_GAME, DONE, ERROR, MOVE }
 
 func _ready():
+	#rng.randomize()
+	print(randi())
 	board.connect("clicked", self, "piece_clicked")
 	board.connect("unclicked", self, "piece_unclicked")
 	board.connect("moved", self, "mouse_moved")
@@ -196,6 +228,62 @@ func piece_unclicked(piece):
 	try_to_make_a_move(piece, false)
 
 
+func cwl1(apiece, dpiece):
+	if game_debug: print("In Chess War L1")
+	if game_debug: print("War Level from config is: ", war_level)
+	print("cwl1=====The attacker is: ", apiece)
+	#print("The attacker is a ", apiece.color, apiece.type)
+	print("cwl1=====The defender is: ", dpiece)
+	#print("The defender is a ", dpiece.color, dpiece.type)
+	#print("Sending battle report to HUD")
+	#l1_battlechancediv = get_node('/root/PlayersData').l1_battlechancediv
+	#l1_battlechancediv = config.get_value('options', 'l1_battlechancediv')
+	#$HUD/BattleReport/BattleReport.text = "In Chess War L1\n"
+	#$HUD/BattleReport.visible = true
+	#print("Sent battle report to HUD and set visible")
+	if game_debug: print("cwl1=====Attacker: ", apiece)
+	#$HUD/BattleReport/BattleReport.text = $HUD/BattleReport/BattleReport.text + "Attacker: " + str(apiece) + "\n"
+	if game_debug: print("cwl1=====Defender: ", dpiece)
+	#$HUD/BattleReport/BattleReport.text = $HUD/BattleReport/BattleReport.text + "Defender: " + str(dpiece) + "\n"
+	battlechance = randf()
+	if game_debug: print("cwl1=====Battlechance is: ", battlechance)
+	#$HUD/BattleReport/BattleReport.text = $HUD/BattleReport/BattleReport.text + "Battlechance is: "+ str(battlechance) + "\n"
+	#$HUD/Announcement.visible = true
+	if battlechance <= l1_battlechancediv:
+		if game_debug: print("cwl1==========Attack wins with battlechance = ", battlechance)
+		#$HUD/BattleReport/BattleReport.text = $HUD/BattleReport/BattleReport.text + "Attack wins with battlechance = " + str(battlechance) + "\n"
+		print("01 - zattackwon is: ", zattackwon)
+		print("Setting zattackwon to true in Level: ", war_level)
+		zattackwon = true
+		print("02 - zattackwon is: ", zattackwon)
+		# we return the piece to kill
+		battlecount = battlecount + 1
+		print(battlecount, " battles have now been fought.")
+		print("Should end up removing the piece: ", dpiece)
+		return "AttackWins"
+	else:
+		if game_debug: print("cwl1==========Defend wins with battlechance = ", battlechance)
+		#$HUD/BattleReport/BattleReport.text = $HUD/BattleReport/BattleReport.text + "Defend wins with battlechance = " + str(battlechance) + "\n"
+		print("03 - zattackwon is: ", zattackwon)
+		print("Setting zattackwon to false in Level: ", war_level)
+		zattackwon = false
+		print("04 - zattackwon is: ", zattackwon)
+		# we return the piece to kill
+		battlecount = battlecount + 1
+		print(battlecount, " battles have now been fought.")
+		print("Should end up removing the piece: ", apiece)
+		return "DefendWins"
+		#temp pretend attacker won
+		#return dpiece
+
+func cwl2(apiece, dpiece):
+	if game_debug: print("In Chess War L2")
+	if game_debug: print("War Level from config is: ", war_level)
+	print("The attacker is a ", apiece.color, apiece.type)
+	print("The defender is a ", dpiece.color, dpiece.type)
+
+
+
 func try_to_make_a_move(piece: Piece, non_player_move = true):
 	var info = board.get_position_info(piece, non_player_move)
 	# When Idle, we are not playing a game so the user may move the black pieces
@@ -244,8 +332,61 @@ func try_to_make_a_move(piece: Piece, non_player_move = true):
 				board.take_piece(info.piece)
 				move_piece(piece)
 		else:
+			#board.take_piece(info.piece)
+			#print("Did I just take the piece: ", info.piece)
+			var dpiece = info.piece
+			var active_piece = piece
+			var apiece = active_piece
+			if info.piece ==null:
+				print("Is this a move with no piece taken? ", info.piece, dpiece )
+				board.take_piece(info.piece) # this may never be called
+				move_piece(piece)
+			else:
+				print("There is a piece at the end of this move: ",info.piece, dpiece)
+				if war_level == "Level0":
+					if game_debug: print("\n\n-----In War Level: ", war_level)
+					warresult = "AttackWins"
+				elif war_level == "Level1":
+					if game_debug: print("\n\n-----In War Level: ", war_level)
+					print("Calling cwl1 with active_piece and dpiece: ", active_piece, dpiece)
+					warresult = cwl1(active_piece, dpiece)
+				elif war_level == "Level2":
+					if game_debug: print("\n\n-----In War Level: ", war_level)
+					print("Attacker: ", apiece)
+					attack1 = apiece.current_attack
+					print("Attack1 is: ", attack1)
+					attack1type = apiece.type
+					print("attack1type is: ", attack1type)
+					print("calling L2 active_piece, dpiece - ", active_piece, dpiece)
+					warresult = cwl2(active_piece, dpiece)
+				else:
+					# should neve get here but just in case and
+					# to make adding new levels easier
+					print("If we got here, something went wrong, pretend.")
+					warresult = "AttackWins"
+
+
+				if warresult == "AttackWins":
+					print("********** warresult == AttackWins **********")
+					print("We should be safe to do nothing piece wise from here")
+				else:
+					print("---------- warresult == DefendWins ----------")
+					print("swap  pieces around and proceed?: ")
+					print("Before pieve swap piece, info.piece:", piece, info.piece)
+					var dwpiece = info.piece
+					info.piece = piece
+					piece = dwpiece
+					#set_next_color()
+					print("After pieve swap piece, info.piece:", piece, info.piece)
+					#board.take_piece(piece)
+					#move_piece(info.piece)
+				#print("Did I just move the piece: ", piece)
+
+
 			board.take_piece(info.piece)
 			move_piece(piece)
+
+
 			var status = board.is_king_checked(piece)
 			if status.mated:
 				alert("Check Mate!")
@@ -262,7 +403,12 @@ func try_to_make_a_move(piece: Piece, non_player_move = true):
 
 
 func move_piece(piece: Piece, not_castling = true):
-	set_next_color(piece.side == "B")
+	# I need to do something different here when warresult DefendWins? Or do I do an extra set_next_color
+	# in the other if (near) where the swap occurs?
+	if warresult == "AttackWins":
+		set_next_color(piece.side == "B")
+	else:
+		set_next_color(piece.side == "W")
 	var pos = [piece.pos, piece.new_pos]
 	board.move_piece(piece, state == ENGINE_TURN)
 	if state == PLAYER_TURN:

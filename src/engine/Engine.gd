@@ -46,12 +46,15 @@ func start_udp_server():
 	var file = File.new()
 	if !file.file_exists(iopiper):
 		err = "Missing iopiper at: " + iopiper
+		print(err)
 	elif !file.file_exists(engine):
 		err = "Missing engine at: " + engine
+		print(err)
 	else:
 		server_pid = OS.execute(iopiper, [engine], false)
 		if server_pid < 400: # PIDs are likely above this value and error codes below it
 			err = "Unable to start UDP server with error code: " + server_pid
+			print(err)
 			server_pid = 0
 		else:
 			$UDPClient.set_server()

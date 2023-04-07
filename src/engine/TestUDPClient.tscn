@@ -17,6 +17,7 @@ engine = "/home/andrew/dev/godot/git/andrew-wilkes/godot-chess/bin/sampler"
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+
 [connection signal="tree_exited" from="." to="." method="_on_TestUDPClient_tree_exited"]
 [connection signal="got_packet" from="UDPClient" to="." method="_on_UDPClient_got_packet"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

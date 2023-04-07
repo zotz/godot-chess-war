@@ -32,7 +32,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Chess"
+config/name="Godot-Chess-War"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 

@@ -2,6 +2,8 @@
 
 extends GridContainer
 
+var rng = RandomNumberGenerator.new()
+
 var keys = "BKNPQR" # Bishop King kNight Pawn Queen Rook
 
 # Return a chess piece object defaulting to a White Pawn
@@ -25,6 +27,7 @@ func promote(p: Piece, promote_to = "q"):
 
 # Edit this to start in the game or as a Tool script when the scene is loaded
 func _ready():
+	rng.randomize()
 #	setup()
 	visible = false # It is set up as an Autoloaded scene so want to hide it
 
