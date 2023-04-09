@@ -12,3 +12,6 @@ engine/
 bin/
 data/
 fens/
+
+# chess war ignores
+*.cfg

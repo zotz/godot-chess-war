@@ -4,7 +4,86 @@ extends GridContainer
 
 var rng = RandomNumberGenerator.new()
 
+#var variable
+
+#func set_variable(var v):
+#    variable = v
+
+func get_rng():
+	return rng
+
+
 var keys = "BKNPQR" # Bishop King kNight Pawn Queen Rook
+
+# The key code used in notation (PRNBQK)
+
+# not sure if I am putting this in the correct spot.
+# we shall see
+# I know I am doing something wrong below but how to fix?
+var kinga = 1
+var kingd = 1
+var kingv = 1
+var kingr = 1
+var queena = 1
+var queend = 1
+var queenv = 1
+var queenr = 1
+var bishopa = 1
+var bishopd = 1
+var bishopv = 1
+var bishopr = 1
+var knighta = 1
+var knightd = 1
+var knightv = 1
+var knightr = 1
+var rooka = 1
+var rookd = 1
+var rookv = 1
+var rookr = 1
+var pawna = 1
+var pawnd = 1
+var pawnv = 1
+var pawnr = 1
+var war_level
+var l1_battlechancediv
+
+func call_config ():
+	print("IN function call_config in Pieces.gd")
+	var config = ConfigFile.new()
+	
+	var err = config.load("res://config.cfg")
+
+	if err != OK:
+		config.set_value('options', 'kinga', 99999)
+		config.set_value('options', 'kingd', 95)
+		config.set_value('options', 'kingv', 500)
+		config.set_value('options', 'kingr', 1)
+		config.set_value('options', 'queena', 80)
+		config.set_value('options', 'queend', 45)
+		config.set_value('options', 'queenv', 9)
+		config.set_value('options', 'queenr', .15)
+		config.set_value('options', 'bishopa', 50)
+		config.set_value('options', 'bishopd', 15)
+		config.set_value('options', 'bishopv', 3)
+		config.set_value('options', 'bishopr', .1)
+		config.set_value('options', 'knighta', 50)
+		config.set_value('options', 'knightd', 15)
+		config.set_value('options', 'knightv', 3)
+		config.set_value('options', 'knightr', .1)
+		config.set_value('options', 'rooka', 60)
+		config.set_value('options', 'rookd', 25)
+		config.set_value('options', 'rookv', 5)
+		config.set_value('options', 'rookr', .1)
+		config.set_value('options', 'pawna', 45)
+		config.set_value('options', 'pawnd', 7)
+		config.set_value('options', 'pawnv', 1)
+		config.set_value('options', 'pawnr', .15)
+		config.set_value('options', 'war_level', "Level1") 
+		config.set_value('options', 'l1_battlechancediv', .75)
+
+		
+	return config
+
 
 # Return a chess piece object defaulting to a White Pawn
 func get_piece(key = "P", side = "W"):

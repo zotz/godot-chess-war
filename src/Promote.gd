@@ -5,6 +5,7 @@ signal promotion_picked
 var piece: Piece
 
 func _ready():
+	print("In Promote")
 	var path = "M/VBox/"
 	for ch in "qbnr":
 		var node: Button = get_node(path + ch)
@@ -18,4 +19,5 @@ func open(p: Piece):
 
 func chosen(pick):
 	emit_signal("promotion_picked", piece, pick)
+	hide()
 	hide()

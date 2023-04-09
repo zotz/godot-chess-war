@@ -9,6 +9,8 @@ signal halfmove
 signal fullmove
 signal taken
 
+onready var config = get_node('/root/Pieces').call_config()
+
 export var square_width = 64 # pixels (same as chess piece images)
 export(Color) var white # Square color
 export(Color) var grey # Square color
@@ -29,7 +31,61 @@ var default_fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 0"
 var cleared = true
 var highlighed_tiles = []
 
+
+var kinga
+var kingd
+var kingv
+var kingr
+var queena
+var queend
+var queenv
+var queenr
+var bishopa
+var bishopd
+var bishopv
+var bishopr
+var knighta
+var knightd
+var knightv
+var knightr
+var rooka
+var rookd
+var rookv
+var rookr
+var pawna
+var pawnd
+var pawnv
+var pawnr
+
+var cwl2key
+
 func _ready():
+	
+	kinga = config.get_value('options', 'kinga')
+	kingd = config.get_value('options', 'kingd')
+	kingv = config.get_value('options', 'kingv')
+	kingr = config.get_value('options', 'kingr')
+	queena = config.get_value('options', 'queena')
+	queend = config.get_value('options', 'queend')
+	queenv = config.get_value('options', 'queenv')
+	queenr = config.get_value('options', 'queenr')
+	bishopa = config.get_value('options', 'bishopa')
+	bishopd = config.get_value('options', 'bishopd')
+	bishopv = config.get_value('options', 'bishopv')
+	bishopr = config.get_value('options', 'bishopr')
+	knighta = config.get_value('options', 'knighta')
+	knightd = config.get_value('options', 'knightd')
+	knightv = config.get_value('options', 'knightv')
+	knightr = config.get_value('options', 'knightr')
+	rooka = config.get_value('options', 'rooka')
+	rookd = config.get_value('options', 'rookd')
+	rookv = config.get_value('options', 'rookv')
+	rookr = config.get_value('options', 'rookr')
+	pawna = config.get_value('options', 'pawna')
+	pawnd = config.get_value('options', 'pawnd')
+	pawnv = config.get_value('options', 'pawnv')
+	pawnr = config.get_value('options', 'pawnr')
+
 	# grid will map the pieces in the game
 	grid.resize(num_squares)
 	draw_tiles()
@@ -271,6 +327,55 @@ func set_piece(key: String, i: int, castling: String):
 	var p = Piece.new()
 	p.key = key.to_upper()
 	p.side = "W" if "a" > key else "B"
+	p.color = "White" if "a" > key else "Black"
+	
+	# chess war level 2 attempted additions here
+	cwl2key = key.to_upper()
+	match cwl2key:
+		"P":
+			# matched a pawn
+			p.type = "Pawn"
+			p.current_attack = pawna
+			p.current_defend = pawnd
+			p.recuperate = pawnr
+			p.value = pawnv
+		"R":
+			# matched a rook
+			p.type = "Rook"
+			p.current_attack = rooka
+			p.current_defend = rookd
+			p.recuperate = rookr
+			p.value = rookv
+		"N":
+			# matched a knight
+			p.type = "Knight"
+			p.current_attack = knighta
+			p.current_defend = knightd
+			p.recuperate = knightr
+			p.value = knightv
+		"B":
+			# matched a bishop
+			p.type = "Bishop"
+			p.current_attack = bishopa
+			p.current_defend = bishopd
+			p.recuperate = bishopr
+			p.value = bishopv
+		"Q":
+			# matched a queen
+			p.type = "Queen"
+			p.current_attack = queena
+			p.current_defend = queend
+			p.recuperate = queenr
+			p.value = queenv
+		"K":
+			# matched a king
+			p.type = "King"
+			p.current_attack = kinga
+			p.current_defend = kingd
+			p.recuperate = kingr
+			p.value = kingv
+
+
 # warning-ignore:integer_division
 	p.pos = Vector2(i % 8, i / 8)
 	p.obj = Pieces.get_piece(p.key, p.side)

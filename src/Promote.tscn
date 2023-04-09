@@ -3,7 +3,6 @@
 [ext_resource path="res://Promote.gd" type="Script" id=1]
 
 [node name="Promote" type="PopupPanel"]
-visible = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -477.0
@@ -16,7 +15,7 @@ __meta__ = {
 [node name="M" type="MarginContainer" parent="."]
 margin_left = 4.0
 margin_top = 4.0
-margin_right = 159.0
+margin_right = 219.0
 margin_bottom = 218.0
 custom_constants/margin_right = 20
 custom_constants/margin_top = 20
@@ -26,7 +25,7 @@ custom_constants/margin_bottom = 20
 [node name="VBox" type="VBoxContainer" parent="M"]
 margin_left = 20.0
 margin_top = 20.0
-margin_right = 135.0
+margin_right = 195.0
 margin_bottom = 194.0
 custom_constants/separation = 20
 __meta__ = {
