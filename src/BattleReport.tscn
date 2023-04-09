@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://BattleReport.gd" type="Script" id=1]
+
+[node name="BattleReport" type="PopupPanel"]
+margin_right = 800.0
+margin_bottom = 8.0
+script = ExtResource( 1 )
+
+[node name="HUD" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="BattleReport" type="Panel" parent="HUD"]
+margin_left = 400.0
+margin_right = 800.0
+margin_bottom = 800.0
+
+[node name="Label" type="Label" parent="HUD/BattleReport"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "Battle Report"
+
+[node name="OKButton" type="Button" parent="HUD/BattleReport"]
+margin_left = 154.0
+margin_top = 765.0
+margin_right = 257.0
+margin_bottom = 785.0
+text = "Back To Game"
+icon_align = 1
+
+[node name="BTGameStats" type="Panel" parent="HUD"]
+margin_right = 400.0
+margin_bottom = 800.0
+
+[node name="Label" type="Label" parent="HUD/BTGameStats"]
+text = "Game Stats"
+
+[connection signal="pressed" from="HUD/BattleReport/OKButton" to="." method="_on_OKButton_pressed"]
