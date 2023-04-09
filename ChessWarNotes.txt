@@ -1,0 +1,53 @@
+Chess War Notes.
+
+Approach:
+
+I think this applied to the early programs I wrote from scratch. Quick Basic under DOS / Windows and tcl/tk under linux (Or wherever.) And it certainly applies to the approach of adding Chess War features / abilities to existing Chess programs.
+
+1. The main thing is to find where a piece is to be removed from the board and to send the piece "attacking" and the piece "defending" and to send them off to a function / subroutine to do battle. Perhaps give feedback on the battle. Then return the results of the battle for further handling. If the attacker won, the program can basically proveed as normal, the defender is removed from the board however the existing program removes pieces and the attacker now occupies the square that the defender previously did. The attacker may or may not be left in a diminished state as a result of the battle. If the defender won, the arracker needs to be removed from the board and the defender left in place. Likewise, the defender may or may not be left in a diminished state as a result of the battle.
+
+2. Any extra statistics that are kept and displayed can happen in here somewhere.
+
+3. Battle action / results can be displayed as needed.
+
+4. Problems I have not sufficiently investigated / dealt with... If a piece can be removed in more than one location in the code, I am currently missing anything beyond the one main place I find. En Passant captures for instance.
+
+5. How does any chess engine involved pick up on the Chess War results? If it does not naturally pick the results up as a normal part of how the existing code works, one approach I have tried in the past is to create a new FEN representing the board state after the battle and then send that to the engine as a new starting point. There may be problems with this approach but it is the best I have come up with so far. I am not at this time interested in trying to modify chess engines to understand Chess Wars.
+
+History:
+
+Likely incomplete.
+
+The oldest I remember (could be mistaken) is code I wrote for QuickBasic. (Currently lost, may be found by exploring old machines.)
+
+Next I converted that to tcl/tk and that can currently be found here:
+
+https://github.com/zotz/bitsandpieces/blob/main/zbcwl2.tcl
+https://sourceforge.net/projects/zbcw/
+
+Two short videos of the tcl/tk version can be found here: https://www.youtube.com/@zotzbro
+
+At some point, I did a Level 1 chess war for the Vassal Game Engine (networked play):
+https://vassalengine.org/wiki/Module:ZotzBrothers_Chess_War_Level_One
+
+I think I had started on Level 2 for Vassal and was geting some help but never made a lot of progress and certainly never finished.
+
+At some point, I worked on one based on an existing python server codebase and a javascript client codebase. I had something sort of working but broke it and never managed to get it back to working. (networked play)
+A short video of this in action can be found here: https://www.youtube.com/@zotzbro
+At sokme point, I will at least try to find links to the original code I began with and provide links.
+If I can ever sort out my code, I will likely create a repo for that too.
+
+Lately, I have been working on two different Godot codebases.
+
+HexChess ( https://github.com/esbudylin/HexChess ) became:
+HexChessWar ( https://github.com/zotz/HexChessWar )
+
+And
+
+godot-chess ( https://github.com/andrew-wilkes/godot-chess ) [networked play] became:
+godot-chess-war ( https://github.com/zotz/godot-chess-war ) [play against a chess engine]
+
+Future:
+
+Well, besides getting something decent finished for Level 2, I have some interesting ideas for a Level 3 and likely a Level 4.
+
