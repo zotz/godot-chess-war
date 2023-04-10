@@ -15,3 +15,7 @@ fens/
 
 # chess war ignores
 *.cfg
+
+# executable ignores
+*.x86_64
+*.exe
