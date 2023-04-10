@@ -15,10 +15,19 @@ margin_left = 200.0
 margin_right = 800.0
 margin_bottom = 900.0
 
-[node name="Label" type="Label" parent="HUD/BattleReport"]
+[node name="BRLabel" type="RichTextLabel" parent="HUD/BattleReport"]
+margin_right = 600.0
+margin_bottom = 800.0
+custom_colors/default_color = Color( 0.0941176, 0.847059, 0.87451, 1 )
+bbcode_enabled = true
+bbcode_text = " [color=white]Battle Reportblue[/color]"
+text = " Battle Reportblue"
+
+[node name="BRLabel-01" type="Label" parent="HUD/BattleReport"]
+visible = false
 margin_right = 40.0
 margin_bottom = 14.0
-text = "Battle Report"
+text = "Battle Report Lbl"
 
 [node name="OKButton" type="Button" parent="HUD/BattleReport"]
 margin_left = 154.0
