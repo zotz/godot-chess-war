@@ -2,6 +2,8 @@
 
 extends GridContainer
 
+var pieces_debug = false
+
 var rng = RandomNumberGenerator.new()
 
 #var variable
@@ -48,7 +50,7 @@ var war_level
 var l1_battlechancediv
 
 func call_config ():
-	print("IN function call_config in Pieces.gd")
+	if pieces_debug: print("IN function call_config in Pieces.gd")
 	var config = ConfigFile.new()
 	
 	var err = config.load("res://config.cfg")

@@ -16,7 +16,6 @@
 [node name="Main" type="MarginContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -324.0
 rect_min_size = Vector2( 600, 600 )
 custom_constants/margin_right = 20
 custom_constants/margin_top = 20
@@ -27,12 +26,12 @@ script = ExtResource( 2 )
 [node name="VBox" type="VBoxContainer" parent="."]
 margin_left = 20.0
 margin_top = 20.0
-margin_right = 601.0
-margin_bottom = 960.0
+margin_right = 880.0
+margin_bottom = 1004.0
 custom_constants/separation = 20
 
 [node name="HBox" type="HBoxContainer" parent="VBox"]
-margin_right = 581.0
+margin_right = 860.0
 margin_bottom = 94.0
 custom_constants/separation = 20
 
@@ -71,13 +70,13 @@ text = "Configure"
 
 [node name="Menu" type="VBoxContainer" parent="VBox/HBox"]
 margin_left = 177.0
-margin_right = 264.0
+margin_right = 543.0
 margin_bottom = 94.0
 size_flags_horizontal = 3
 custom_constants/separation = 10
 
 [node name="Next" type="HBoxContainer" parent="VBox/HBox/Menu"]
-margin_right = 87.0
+margin_right = 366.0
 margin_bottom = 20.0
 
 [node name="Flip" type="Button" parent="VBox/HBox/Menu/Next"]
@@ -89,27 +88,27 @@ icon = SubResource( 1 )
 
 [node name="Color" type="ColorRect" parent="VBox/HBox/Menu/Next"]
 margin_left = 87.0
-margin_right = 87.0
+margin_right = 366.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 
 [node name="Load" type="Button" parent="VBox/HBox/Menu"]
 margin_top = 30.0
-margin_right = 87.0
+margin_right = 366.0
 margin_bottom = 50.0
 rect_pivot_offset = Vector2( -238.46, 107 )
 text = "Load"
 
 [node name="Save" type="Button" parent="VBox/HBox/Menu"]
 margin_top = 60.0
-margin_right = 87.0
+margin_right = 366.0
 margin_bottom = 80.0
 rect_pivot_offset = Vector2( -238.46, 107 )
 text = "Save"
 
 [node name="Options" type="VBoxContainer" parent="VBox/HBox"]
-margin_left = 284.0
-margin_right = 431.0
+margin_left = 563.0
+margin_right = 710.0
 margin_bottom = 94.0
 custom_constants/separation = 10
 
@@ -158,8 +157,8 @@ margin_bottom = 85.0
 text = "Reset Board"
 
 [node name="Grid" type="GridContainer" parent="VBox/HBox"]
-margin_left = 451.0
-margin_right = 581.0
+margin_left = 730.0
+margin_right = 860.0
 margin_bottom = 94.0
 custom_constants/vseparation = 10
 custom_constants/hseparation = 20
@@ -206,30 +205,30 @@ visible = true
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 114.0
-margin_right = 581.0
+margin_right = 860.0
 margin_bottom = 414.0
 rect_min_size = Vector2( 300, 300 )
 custom_constants/margin_right = 20
 
 [node name="Spacer" type="Control" parent="VBox"]
 margin_top = 434.0
-margin_right = 581.0
+margin_right = 860.0
 margin_bottom = 444.0
 rect_min_size = Vector2( 0, 10 )
 
 [node name="BlackPieces" type="GridContainer" parent="VBox"]
 margin_top = 464.0
-margin_right = 581.0
-margin_bottom = 692.0
+margin_right = 860.0
+margin_bottom = 714.0
 size_flags_vertical = 3
 custom_constants/vseparation = 5
 custom_constants/hseparation = 5
 columns = 8
 
 [node name="WhitePieces" type="GridContainer" parent="VBox"]
-margin_top = 712.0
-margin_right = 581.0
-margin_bottom = 940.0
+margin_top = 734.0
+margin_right = 860.0
+margin_bottom = 984.0
 size_flags_vertical = 3
 custom_constants/vseparation = 5
 custom_constants/hseparation = 5

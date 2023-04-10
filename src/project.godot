@@ -46,8 +46,8 @@ gdscript/warnings/return_value_discarded=false
 
 [display]
 
-window/size/width=700
-window/size/height=980
+window/size/width=900
+window/size/height=1024
 
 [rendering]
 

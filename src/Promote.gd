@@ -5,7 +5,7 @@ signal promotion_picked
 var piece: Piece
 
 func _ready():
-	print("In Promote")
+	#print("In Promote")
 	var path = "M/VBox/"
 	for ch in "qbnr":
 		var node: Button = get_node(path + ch)

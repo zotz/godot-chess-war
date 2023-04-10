@@ -1,5 +1,5 @@
 extends PopupPanel
-
+var report_debug = false
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -8,9 +8,8 @@ extends PopupPanel
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print("This is BattleReport")
-	# connect the button's "pressed" signal to the "on_close_button_pressed" method
-	#$HUD/BattleReport/OKButton.connect("pressed", self, "_on_OKButton_pressed")
+	if report_debug: print("This is BattleReport")
+	pass
 
 
 
@@ -20,6 +19,6 @@ func _ready():
 
 
 func _on_OKButton_pressed():
-	print("OKButton  / Back To Game pressed")
+	if report_debug: print("OKButton  / Back To Game pressed")
 	$HUD.hide()
 

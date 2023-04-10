@@ -2,6 +2,8 @@ extends Control
 
 class_name Board
 
+var board_debug = false
+
 signal clicked
 signal unclicked
 signal moved
@@ -327,7 +329,7 @@ func set_piece(key: String, i: int, castling: String):
 	var p = Piece.new()
 	p.key = key.to_upper()
 	p.side = "W" if "a" > key else "B"
-	p.color = "White" if "a" > key else "Black"
+	p.color = "white" if "a" > key else "black"
 	
 	# chess war level 2 attempted additions here
 	cwl2key = key.to_upper()
@@ -476,9 +478,9 @@ func hide_labels(show = false):
 func square_event(event: InputEvent, x: int, y: int):
 	if event is InputEventMouseButton:
 		get_tree().set_input_as_handled()
-		print("Clicked at: ", [x, y])
+		if board_debug: print("Clicked at: ", [x, y])
 		var p = get_piece_in_grid(x, y)
-		print(p)
+		if board_debug: print(p)
 		if p != null:
 			if event.pressed:
 				emit_signal("clicked", p)

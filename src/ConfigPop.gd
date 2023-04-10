@@ -40,9 +40,9 @@ onready var config = get_node('/root/Pieces').call_config()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print("Should be in CreatePop popup panel.")
+	#print("Should be in CreatePop popup panel.")
 
-	print("config is: ", config)
+	#print("config is: ", config)
 	config.save("res://config.cfg")
 	kinga = config.get_value('options', 'kinga')
 	kingd = config.get_value('options', 'kingd')
@@ -70,10 +70,10 @@ func _ready():
 	pawnr = config.get_value('options', 'pawnr')
 	war_level = config.get_value('options', 'war_level')
 	l1_battlechancediv = config.get_value('options', 'l1_battlechancediv')
-	print("kinga is now: ",kinga)
-	print("Do we have kingd here in ConfigPop?",kingd)
-	print("warlevel is now: ", war_level)
-	print("l1_battlechancediv is now: ", l1_battlechancediv)
+	#print("kinga is now: ",kinga)
+	#print("Do we have kingd here in ConfigPop?",kingd)
+	#print("warlevel is now: ", war_level)
+	#print("l1_battlechancediv is now: ", l1_battlechancediv)
 
 
 	#var war_level = config.get_value('options', 'war_level')
@@ -120,19 +120,11 @@ func _ready():
 #func _process(delta):
 #	pass
 
-#trying to learn some tings below
-func return_boo ():
-	var boo = "Boo!"
-	return boo
-
 
 func _on_BackPanel_pressed():
-	print("ConfigPop BackPanel pressed - do ya do!")
+	#print("ConfigPop BackPanel pressed - do ya do!")
+	pass
 
-	#$Menu/VBoxContainer/Local.grab_focus()
-	#$Menu.visible = true
-	#$ColorRect/BackPanel.visible = false
-	#$Options.visible = false
 
 
 	for checkbox in get_tree().get_nodes_in_group('war_levels'):

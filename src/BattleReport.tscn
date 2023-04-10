@@ -11,9 +11,9 @@ script = ExtResource( 1 )
 visible = false
 
 [node name="BattleReport" type="Panel" parent="HUD"]
-margin_left = 400.0
+margin_left = 200.0
 margin_right = 800.0
-margin_bottom = 800.0
+margin_bottom = 900.0
 
 [node name="Label" type="Label" parent="HUD/BattleReport"]
 margin_right = 40.0
@@ -29,10 +29,129 @@ text = "Back To Game"
 icon_align = 1
 
 [node name="BTGameStats" type="Panel" parent="HUD"]
-margin_right = 400.0
-margin_bottom = 800.0
+margin_top = 3.0
+margin_right = 200.0
+margin_bottom = 903.0
 
 [node name="Label" type="Label" parent="HUD/BTGameStats"]
+margin_right = 73.0
+margin_bottom = 18.0
 text = "Game Stats"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/BTGameStats"]
+margin_top = 18.0
+margin_right = 252.0
+margin_bottom = 324.0
+
+[node name="HBCTurn" type="HBoxContainer" parent="HUD/BTGameStats/VBoxContainer"]
+margin_right = 252.0
+margin_bottom = 14.0
+
+[node name="PlayersTurn" type="Label" parent="HUD/BTGameStats/VBoxContainer/HBCTurn"]
+margin_right = 81.0
+margin_bottom = 14.0
+text = "Player's Turn"
+
+[node name="Turn" type="Label" parent="HUD/BTGameStats/VBoxContainer/HBCTurn"]
+margin_left = 85.0
+margin_right = 123.0
+margin_bottom = 14.0
+text = "White"
+
+[node name="HBCWhiteScore" type="HBoxContainer" parent="HUD/BTGameStats/VBoxContainer"]
+margin_top = 18.0
+margin_right = 252.0
+margin_bottom = 32.0
+
+[node name="WhtScoreLabel" type="Label" parent="HUD/BTGameStats/VBoxContainer/HBCWhiteScore"]
+margin_right = 77.0
+margin_bottom = 14.0
+text = "White Score"
+
+[node name="WhtScoreNum" type="Label" parent="HUD/BTGameStats/VBoxContainer/HBCWhiteScore"]
+margin_left = 81.0
+margin_right = 89.0
+margin_bottom = 14.0
+text = "0"
+
+[node name="HBCBlackScore" type="HBoxContainer" parent="HUD/BTGameStats/VBoxContainer"]
+margin_top = 36.0
+margin_right = 252.0
+margin_bottom = 50.0
+
+[node name="BlkScoreLabel" type="Label" parent="HUD/BTGameStats/VBoxContainer/HBCBlackScore"]
+margin_right = 73.0
+margin_bottom = 14.0
+text = "Black Score"
+
+[node name="BlkScoreNum" type="Label" parent="HUD/BTGameStats/VBoxContainer/HBCBlackScore"]
+margin_left = 77.0
+margin_right = 85.0
+margin_bottom = 14.0
+text = "0"
+
+[node name="HBCWhiteWins" type="HBoxContainer" parent="HUD/BTGameStats/VBoxContainer"]
+margin_top = 54.0
+margin_right = 252.0
+margin_bottom = 68.0
+
+[node name="WhtWinsLabel" type="Label" parent="HUD/BTGameStats/VBoxContainer/HBCWhiteWins"]
+margin_right = 74.0
+margin_bottom = 14.0
+text = "White Wins"
+
+[node name="WhtWinsNum" type="Label" parent="HUD/BTGameStats/VBoxContainer/HBCWhiteWins"]
+margin_left = 78.0
+margin_right = 86.0
+margin_bottom = 14.0
+text = "0"
+
+[node name="HBCBlackWins" type="HBoxContainer" parent="HUD/BTGameStats/VBoxContainer"]
+margin_top = 72.0
+margin_right = 252.0
+margin_bottom = 86.0
+
+[node name="BlkWinsLabel" type="Label" parent="HUD/BTGameStats/VBoxContainer/HBCBlackWins"]
+margin_right = 70.0
+margin_bottom = 14.0
+text = "Black Wins"
+
+[node name="BlkWinsNum" type="Label" parent="HUD/BTGameStats/VBoxContainer/HBCBlackWins"]
+margin_left = 74.0
+margin_right = 82.0
+margin_bottom = 14.0
+text = "0"
+
+[node name="HBCAttackWins" type="HBoxContainer" parent="HUD/BTGameStats/VBoxContainer"]
+margin_top = 90.0
+margin_right = 252.0
+margin_bottom = 104.0
+
+[node name="AttackWinsLabel" type="Label" parent="HUD/BTGameStats/VBoxContainer/HBCAttackWins"]
+margin_right = 76.0
+margin_bottom = 14.0
+text = "Attack Wins"
+
+[node name="AttackWinsNum" type="Label" parent="HUD/BTGameStats/VBoxContainer/HBCAttackWins"]
+margin_left = 80.0
+margin_right = 88.0
+margin_bottom = 14.0
+text = "0"
+
+[node name="HBCDefendWins" type="HBoxContainer" parent="HUD/BTGameStats/VBoxContainer"]
+margin_top = 108.0
+margin_right = 252.0
+margin_bottom = 122.0
+
+[node name="DefendWinsLabel" type="Label" parent="HUD/BTGameStats/VBoxContainer/HBCDefendWins"]
+margin_right = 82.0
+margin_bottom = 14.0
+text = "Defend Wins"
+
+[node name="DefendWinsNum" type="Label" parent="HUD/BTGameStats/VBoxContainer/HBCDefendWins"]
+margin_left = 86.0
+margin_right = 94.0
+margin_bottom = 14.0
+text = "0"
 
 [connection signal="pressed" from="HUD/BattleReport/OKButton" to="." method="_on_OKButton_pressed"]
