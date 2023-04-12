@@ -84,7 +84,7 @@ enum { CONNECT, NEW_GAME, DONE, ERROR, MOVE }
 
 func _ready():
 	if game_debug: print("configp is now: ", configp)
-	#rng.randomize()
+	rng.randomize()
 	if game_debug: print(randi())
 	board.connect("clicked", self, "piece_clicked")
 	board.connect("unclicked", self, "piece_unclicked")
@@ -554,7 +554,8 @@ func try_to_make_a_move(piece: Piece, non_player_move = true):
 				board.take_piece(info.piece) # this may never be called
 				move_piece(piece)
 			else:
-				if game_debug: print("There is a piece at the end of this move: ",info.piece, dpiece)
+				if game_debug: print("==========There is a piece at the end of this move: ",apiece, " attacks ", dpiece)
+				print("==========There is a piece at the end of this move: ",apiece, " attacks ", dpiece)
 				if war_level == "Level0":
 					# Level0 is plain old chess, the attacker always wins
 					if game_debug: print("\n\n-----In War Level: ", war_level)
