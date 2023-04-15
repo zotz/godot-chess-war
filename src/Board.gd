@@ -5,6 +5,7 @@ class_name Board
 var board_debug = false
 
 signal clicked
+signal right_clicked
 signal unclicked
 signal moved
 signal halfmove
@@ -482,7 +483,10 @@ func square_event(event: InputEvent, x: int, y: int):
 		var p = get_piece_in_grid(x, y)
 		if board_debug: print(p)
 		if p != null:
-			if event.pressed:
+			if event.button_index == BUTTON_RIGHT and event.pressed:
+				# if event.button_index == BUTTON_LEFT and event.pressed:
+				emit_signal("right_clicked", p)
+			elif event.pressed:
 				emit_signal("clicked", p)
 			else:
 				emit_signal("unclicked", p)

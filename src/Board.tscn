@@ -19,8 +19,8 @@ mod_color = Color( 0.176471, 0.611765, 0.870588, 1 )
 
 [node name="Grid" type="GridContainer" parent="."]
 margin_left = 20.0
-margin_right = 590.0
-margin_bottom = 980.0
+margin_right = 850.0
+margin_bottom = 1024.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/vseparation = 0

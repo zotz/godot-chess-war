@@ -87,6 +87,7 @@ func _ready():
 	rng.randomize()
 	if game_debug: print(randi())
 	board.connect("clicked", self, "piece_clicked")
+	board.connect("right_clicked", self, "piece_right_clicked")
 	board.connect("unclicked", self, "piece_unclicked")
 	board.connect("moved", self, "mouse_moved")
 	board.get_node("Grid").connect("mouse_exited", self, "mouse_entered")
@@ -282,7 +283,19 @@ func piece_clicked(piece):
 	# it's resting position
 	piece.obj.z_index = 1
 	if game_debug: print("Board clicked ", selected_piece)
+	print("Board clicked ", selected_piece)
 
+
+func piece_right_clicked(piece):
+	selected_piece = piece
+	# Need to ensure that piece displays above all others when moved
+	# The z_index gets reset when we settle the piece back into
+	# it's resting position
+	piece.obj.z_index = 1
+	if game_debug: print("Board right clicked ", selected_piece)
+	print("Board right clicked ", selected_piece, " ", selected_piece.value, " ", selected_piece.current_attack, " ", selected_piece.current_defend, " ", selected_piece.recuperate)
+	var zalerttxt = "Piece Stats:\nCurrent Attack: " + str(selected_piece.current_attack) +  "\nCurrent Defend:  " +  str(selected_piece.current_defend) + "\nCurrent Recuperate:  " + str(selected_piece.recuperate) + "\nCurrent Value:  " + str(selected_piece.value) + "\n..."
+	alert(zalerttxt, 10)
 
 func piece_unclicked(piece):
 	show_transport_buttons(false)
