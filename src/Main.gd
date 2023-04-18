@@ -129,9 +129,29 @@ func _ready():
 
 func do_recuperate():
 	# this is where we go through each piece and regain some health each round
-	print("In do_recuperate...")
-	pass
-
+	#print("In do_recuperate...")
+	var gi = 0 # Grid index
+	for y in 8:
+		for x in 8:
+			var piece = board.grid[gi]
+			gi += 1
+			if piece == null:
+				# no piece here, no recupe done
+				#print("No recupe needed.")
+				pass
+			else:
+				#print("recupe this piece", piece.color," ",piece.type," ",piece.value," ",piece.current_attack," ",piece.max_attack)
+				if piece.current_attack < piece.max_attack:
+					if game_debug: print("Piece is recovering attack strength!")
+					piece.current_attack = piece.current_attack + (piece.current_attack * piece.recuperate)
+					if piece.current_attack > piece.max_attack:
+						piece.current_attack = piece.max_attack
+				if piece.current_defend < piece.max_defend:
+					if game_debug: print("Piece is recovering defend strength!")
+					piece.current_defend = piece.current_defend + (piece.current_defend * piece.recuperate)
+					if piece.current_defend > piece.max_defend:
+						piece.current_defend = piece.max_defend
+				if game_debug: print("After recuperate:  ", piece.current_attack, " | ", piece.current_defend)
 
 func handle_state(event, msg = ""):
 	match state:

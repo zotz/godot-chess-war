@@ -342,6 +342,8 @@ func set_piece(key: String, i: int, castling: String):
 			p.current_defend = pawnd
 			p.recuperate = pawnr
 			p.value = pawnv
+			p.max_attack = pawna
+			p.max_defend = pawnd
 		"R":
 			# matched a rook
 			p.type = "Rook"
@@ -349,6 +351,8 @@ func set_piece(key: String, i: int, castling: String):
 			p.current_defend = rookd
 			p.recuperate = rookr
 			p.value = rookv
+			p.max_attack = rooka
+			p.max_defend = rookd
 		"N":
 			# matched a knight
 			p.type = "Knight"
@@ -356,6 +360,8 @@ func set_piece(key: String, i: int, castling: String):
 			p.current_defend = knightd
 			p.recuperate = knightr
 			p.value = knightv
+			p.max_attack = knighta
+			p.max_defend = knightd
 		"B":
 			# matched a bishop
 			p.type = "Bishop"
@@ -363,6 +369,8 @@ func set_piece(key: String, i: int, castling: String):
 			p.current_defend = bishopd
 			p.recuperate = bishopr
 			p.value = bishopv
+			p.max_attack = bishopa
+			p.max_defend = bishopd
 		"Q":
 			# matched a queen
 			p.type = "Queen"
@@ -370,6 +378,8 @@ func set_piece(key: String, i: int, castling: String):
 			p.current_defend = queend
 			p.recuperate = queenr
 			p.value = queenv
+			p.max_attack = queena
+			p.max_defend = queend
 		"K":
 			# matched a king
 			p.type = "King"
@@ -377,6 +387,8 @@ func set_piece(key: String, i: int, castling: String):
 			p.current_defend = kingd
 			p.recuperate = kingr
 			p.value = kingv
+			p.max_attack = kinga
+			p.max_defend = kingd
 
 
 # warning-ignore:integer_division
