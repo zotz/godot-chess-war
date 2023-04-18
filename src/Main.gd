@@ -127,6 +127,11 @@ func _ready():
 	l1_battlechancediv = config.get_value('options', 'l1_battlechancediv')
 	if game_debug: print("kinga is now: ",kinga)
 
+func do_recuperate():
+	# this is where we go through each piece and regain some health each round
+	print("In do_recuperate...")
+	pass
+
 
 func handle_state(event, msg = ""):
 	match state:
@@ -286,16 +291,19 @@ func piece_clicked(piece):
 	print("Board clicked ", selected_piece)
 
 
-func piece_right_clicked(piece):
+func piece_right_clicked(piece, x, y):
+	print("Right clicked at: ", x, " ", y)
 	selected_piece = piece
 	# Need to ensure that piece displays above all others when moved
 	# The z_index gets reset when we settle the piece back into
 	# it's resting position
 	piece.obj.z_index = 1
 	if game_debug: print("Board right clicked ", selected_piece)
-	print("Board right clicked ", selected_piece, " ", selected_piece.value, " ", selected_piece.current_attack, " ", selected_piece.current_defend, " ", selected_piece.recuperate)
-	var zalerttxt = "Piece Stats:\nCurrent Attack: " + str(selected_piece.current_attack) +  "\nCurrent Defend:  " +  str(selected_piece.current_defend) + "\nCurrent Recuperate:  " + str(selected_piece.recuperate) + "\nCurrent Value:  " + str(selected_piece.value) + "\n..."
+	if game_debug: print("Board right clicked ", selected_piece, " ", selected_piece.value, " ", selected_piece.current_attack, " ", selected_piece.current_defend, " ", selected_piece.recuperate)
+	var zalerttxt = "Piece " + piece.color + " " + piece.type + " Stats:\nCurrent Attack: " + str(selected_piece.current_attack) +  "\nCurrent Defend:  " +  str(selected_piece.current_defend) + "\nCurrent Recuperate:  " + str(selected_piece.recuperate) + "\nCurrent Value:  " + str(selected_piece.value) + "\n..."
 	alert(zalerttxt, 10)
+	$c/Alert.rect_position = Vector2(x,y)
+
 
 func piece_unclicked(piece):
 	show_transport_buttons(false)
@@ -513,6 +521,8 @@ func cwl2(apiece, dpiece):
 
 func try_to_make_a_move(piece: Piece, non_player_move = true):
 	var info = board.get_position_info(piece, non_player_move)
+	do_recuperate()
+	#print("info concerns board position_info: ", info)
 	# When Idle, we are not playing a game so the user may move the black pieces
 	if game_debug: print(info.ok)
 	# Try to drop the piece
@@ -563,7 +573,7 @@ func try_to_make_a_move(piece: Piece, non_player_move = true):
 			var active_piece = piece
 			var apiece = active_piece
 			if info.piece ==null:
-				if game_debug: print("Is this a move with no piece taken? ", info.piece, dpiece )
+				if game_debug: print("==========There is no piece at the end of this move. ", info.piece, dpiece )
 				board.take_piece(info.piece) # this may never be called
 				move_piece(piece)
 			else:

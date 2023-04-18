@@ -478,14 +478,18 @@ func hide_labels(show = false):
 
 func square_event(event: InputEvent, x: int, y: int):
 	if event is InputEventMouseButton:
+		var other_pos = get_viewport().get_mouse_position()
+		print("Other position is: ", other_pos)
 		get_tree().set_input_as_handled()
-		if board_debug: print("Clicked at: ", [x, y])
+		if board_debug: print("Clicked at: ", [x, y]) # x and y are square numbers starting at 0 going to 7
 		var p = get_piece_in_grid(x, y)
 		if board_debug: print(p)
 		if p != null:
 			if event.button_index == BUTTON_RIGHT and event.pressed:
 				# if event.button_index == BUTTON_LEFT and event.pressed:
-				emit_signal("right_clicked", p)
+				#print("Mouse right clicked at: ", event.position.x, " ", event.position.y)
+				emit_signal("right_clicked", p, other_pos.x, other_pos.y)
+				#emit_signal("right_clicked", p)
 			elif event.pressed:
 				emit_signal("clicked", p)
 			else:
